@@ -10,18 +10,18 @@ export interface User {
 }
 
 export class Database {
-  #client: Client | undefined;
+  #client;
 
-  private get client() {
-    return this.#client || (this.#client = new Client());
+  public constructor() {
+    this.#client = new Client();
   }
 
   public async findAll() {
-    return await this.client.getAll() as Record<string, User>;
+    return await this.#client.getAll() as Record<string, User>;
   }
 
   public async findUser(userId: string) {
-    const user = await this.client.get(userId) as (User | undefined);
+    const user = await this.#client.get(userId) as (User | undefined);
     return user || {
       userId,
       funditsReceived: 0,
@@ -31,7 +31,8 @@ export class Database {
   }
 
   private async replaceUser(user: User) {
-    await this.client.set(user.userId, user);
+    //XXX need audit trail
+    await this.#client.set(user.userId, user);
   }
 
   public async transferFundits(fromUserId: string, toUserId: string, fundits: number) {
