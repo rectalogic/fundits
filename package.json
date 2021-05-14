@@ -13,7 +13,7 @@
   },
   "license": "MIT",
   "dependencies": {
-    "@replit/database": "^2.0.1",
+    "@replit/database": "rectalogic/database-node#typescript",
     "@slack/bolt": "^3.3"
   },
   "devDependencies": {
