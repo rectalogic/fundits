@@ -1,4 +1,4 @@
-import { Client } from '@replit/database';
+import Client from '@replit/database';
 
 const DEFAULT_BALANCE = 250.25;
 
