@@ -5,7 +5,7 @@ import {
   ReactionMessageItem,
 } from '@slack/bolt';
 
-const Rx = '\u{211E}';
+export const Rx = '\u{211E}';
 
 export const isGenericMessageEvent = (msg: MessageEvent): msg is GenericMessageEvent => (msg as GenericMessageEvent).subtype === undefined;
 

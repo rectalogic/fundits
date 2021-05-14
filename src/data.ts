@@ -31,7 +31,7 @@ export class Database {
   }
 
   private async replaceUser(user: User) {
-    //XXX need audit trail
+    // XXX need audit trail
     await this.#client.set(user.userId, user);
   }
 

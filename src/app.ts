@@ -11,7 +11,9 @@ const app = new App({
   logLevel: LogLevel.DEBUG,
 });
 
-app.command('/fundit', async ({ command, client, ack, say, respond }) => {
+app.command('/fundit', async ({
+  command, client, ack, say, respond,
+}) => {
   await ack();
   const database = new Database();
   // Respond with balances if no input
@@ -27,10 +29,10 @@ app.command('/fundit', async ({ command, client, ack, say, respond }) => {
     if (args.length !== 2) {
       await respond({ text: USAGE, response_type: 'ephemeral' });
     }
-    const [ toUserIdMention, amountStr ] = args;
+    const [toUserIdMention, amountStr] = args;
     const match = toUserIdMention.match(USERID_REGEX);
     if (match && match.groups?.userid) {
-      const response = await client.users.info({ user: match.groups.userid})
+      const response = await client.users.info({ user: match.groups.userid });
       if (response.user?.id) {
         const amount = parseFloat(amountStr);
         if (amount) {
