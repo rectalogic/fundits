@@ -36,8 +36,12 @@ app.command('/fundit', async ({
       if (response.user?.id) {
         const amount = parseFloat(amountStr);
         if (amount) {
-          database.transferFundits(user.userId, response.user.id, amount);
-          await say(`<@${user.userId}> gave <@${response.user.id}> ${Rx}${amount} fundits!`);
+          try {
+            await database.transferFundits(user.userId, response.user.id, amount);
+            await say(`<@${user.userId}> gave <@${response.user.id}> ${Rx}${amount} fundits!`);
+          } catch (err) {
+            await respond({ text: `Error: ${err}.\n${USAGE}`, response_type: 'ephemeral' });
+          }
         } else {
           await respond({ text: `Invalid amount ${amountStr}.\n${USAGE}`, response_type: 'ephemeral' });
         }
