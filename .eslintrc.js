@@ -40,6 +40,7 @@ module.exports = {
         'ts': 'never',
         'tsx': 'never',
       }
-   ]
+   ],
+   'no-return-assign': ['error', 'except-parens'],
   },
 };
