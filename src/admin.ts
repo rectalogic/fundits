@@ -3,7 +3,7 @@ import { AllMiddlewareArgs, SlackEventMiddlewareArgs } from '@slack/bolt';
 export default async function funditCommand({
   event, client,
 }: SlackEventMiddlewareArgs<'app_home_opened'> & AllMiddlewareArgs) {
-  await client.views.publish({
+  const result = await client.views.publish({
     user_id: event.user,
     view: {
       type: 'home',
@@ -18,4 +18,5 @@ export default async function funditCommand({
       ],
     },
   });
+  console.log(result);
 }
